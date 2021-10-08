@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_005337) do
+ActiveRecord::Schema.define(version: 2021_10_08_002104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2021_10_07_005337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["username"], name: "index_dogs_on_username", unique: true
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "match_1_id", null: false
+    t.integer "match_2_id", null: false
+    t.index ["match_1_id", "match_2_id"], name: "index_matches_on_match_1_id_and_match_2_id", unique: true
+    t.index ["match_1_id"], name: "index_matches_on_match_1_id"
+    t.index ["match_2_id"], name: "index_matches_on_match_2_id"
   end
 
 end
